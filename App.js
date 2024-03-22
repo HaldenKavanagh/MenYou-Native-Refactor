@@ -2,15 +2,15 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import SelectMeal from "./components/SelectMeal";
-import SelectDrink from "./components/SelectDrink";
+// import SelectDrink from "./components/SelectDrink";
 import Button from "./components/Button";
 import ViewDate from "./components/ViewDate";
 import axios from "axios";
 
 export default function App() {
   const [selectedMeal, setSelectedMeal] = useState(null);
-  const [selectedDrink, setSelectedDrink] = useState(null);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  // const [selectedDrink, setSelectedDrink] = useState(null);
+  // const [selectedMovie, setSelectedMovie] = useState(null);
   const [mealParams, setMealParams] = useState({
     option: "random",
     region: "",
@@ -21,13 +21,13 @@ export default function App() {
     setSelectedMeal(meal);
   };
 
-  const handleDrinkSelect = (drink) => {
-    setSelectedDrink(drink);
-  };
+  // const handleDrinkSelect = (drink) => {
+  //   setSelectedDrink(drink);
+  // };
 
-  const handleMovieSelect = (movie) => {
-    setSelectedMovie(movie);
-  };
+  // const handleMovieSelect = (movie) => {
+  //   setSelectedMovie(movie);
+  // };
 
   const handleParamsChange = (option, region, category) => {
     setMealParams({ option, region, category });
@@ -77,16 +77,22 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <SelectMeal
-        onSelect={handleMealSelect}
-        onParamsChange={handleParamsChange}
-      />
-      <SelectDrink onSelect={handleDrinkSelect} />
+      <View style={styles.content}>
+        <SelectMeal
+          onSelect={handleMealSelect}
+          onParamsChange={handleParamsChange}
+        />
+      </View>
 
-      <View style={styles.footerContainer}>
+      <View style={styles.content}>
         <Button label="Generate Date" onPress={handleGenerateDate} />
       </View>
-      {selectedMeal && <ViewDate meal={selectedMeal} />}
+
+      {selectedMeal && (
+        <View style={styles.content}>
+          <ViewDate meal={selectedMeal} />
+        </View>
+      )}
       <StatusBar style="auto" />
     </View>
   );
@@ -95,12 +101,17 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#25292e",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#450920",
+    padding: 20,
   },
-  footerContainer: {
-    flex: 1 / 3,
-    alignItems: "center",
+  content: {
+    marginTop: 30,
+    marginBottom: 20,
   },
 });
+
+// darkest - 450920;
+// dark - a53860;
+// medium - da627d;
+// light - ffa5ab;
+// lightest - f9dbbd;

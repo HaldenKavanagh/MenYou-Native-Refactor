@@ -1,20 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, Button, Image, Linking } from "react-native";
-import axios from "axios";
+import { View } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 
-const SelectDrink = ({ onSelect }) => {
-  const [randomMeal, setRandomMeal] = useState(null);
-
-  const fetchRandomMeal = async () => {
-    // Fetch meal data
-    // ...
-    // Update state with fetched meal
-    // setRandomMeal(mealData);
-    // Call onSelect function to pass the selected meal to the parent component
-    // onSelect(mealData);
-  };
-
-  // Rest of the component logic
-};
+const SelectDrink = ({ onSelect, onParamsChange }) => {};
 
 export default SelectDrink;

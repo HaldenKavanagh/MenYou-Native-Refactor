@@ -26,12 +26,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+    backgroundColor: "#da627d",
   },
   buttonIcon: {
     paddingRight: 8,
   },
   buttonLabel: {
-    color: "#fff",
+    color: "#f9dbbd",
     fontSize: 16,
   },
 });
