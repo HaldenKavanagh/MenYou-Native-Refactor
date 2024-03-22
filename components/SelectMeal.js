@@ -3,23 +3,13 @@ import { View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
 
-const SelectMeal = ({ onSelect }) => {
+const SelectMeal = ({ onSelect, onParamsChange }) => {
   const [selectedOption, setSelectedOption] = useState("random");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [mealData, setMealData] = useState(null);
 
   useEffect(() => {
-    // Call the API whenever there's a change in selected parameters
-    if (
-      (selectedOption !== "random" &&
-        selectedOption !== "" &&
-        selectedOption === "region" &&
-        selectedRegion !== "") ||
-      (selectedOption === "category" && selectedCategory !== "")
-    ) {
-      fetchMealData();
-    }
+    onParamsChange(selectedOption, selectedRegion, selectedCategory);
   }, [selectedOption, selectedRegion, selectedCategory]);
 
   const fetchMealData = async () => {
@@ -70,6 +60,7 @@ const SelectMeal = ({ onSelect }) => {
         selectedValue={selectedOption}
         onValueChange={(itemValue) => setSelectedOption(itemValue)}
       >
+        <Picker.Item label="Choose" value="/" />
         <Picker.Item label="Generate Random" value="random" />
         <Picker.Item label="Select by Region" value="region" />
         <Picker.Item label="Select by Category" value="category" />
