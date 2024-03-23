@@ -1,10 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
 
-const ViewDate = ({ meal }) => {
+const ViewDate = ({ meal, drink }) => {
+  if (!drink) {
+    return null;
+  }
   return (
     <View style={styles.dateContainer}>
       <Text style={styles.label}>Selected Meal:</Text>
       <Text style={styles.mealName}>Meal Name: {meal.strMeal}</Text>
+      <Text style={styles.label}>Selected Drink:</Text>
+      <Text style={styles.mealName}>Drink Name: {drink.strDrink}</Text>
     </View>
   );
 };
