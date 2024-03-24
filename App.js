@@ -22,12 +22,20 @@ export default function App() {
     category: "",
   });
 
+  const [movieParams, setMovieParams] = useState({
+    option: "random",
+    genre: "",
+  });
+
   const handleMealSelect = (meal) => {
     setSelectedMeal(meal);
   };
 
   const handleDrinkSelect = (drink) => {
     setSelectedDrink(drink);
+  };
+  const handleMovieSelect = (movie) => {
+    setSelectedMovie(movie);
   };
 
   const handleMealParamsChange = (option, region, category) => {
@@ -38,13 +46,16 @@ export default function App() {
     setDrinkParams({ option, ingredient, category });
   };
 
+  const handleMovieParamsChange = (option, genre) => {
+    setMovieParams({ option, genre });
+  };
+
   const handleGenerateDate = async () => {
     console.log("Generating date...");
     try {
       let mealApiUrl = "";
       let drinkApiUrl = "";
-
-      
+      let movieApiUrl = "";
 
       switch (mealParams.option) {
         case "random":
@@ -59,8 +70,6 @@ export default function App() {
         default:
           break;
       }
-
-      
 
       switch (drinkParams.option) {
         case "random":
@@ -77,11 +86,23 @@ export default function App() {
           break;
       }
 
-      
+      switch (movieParams.option) {
+        case "random":
+          movieApiUrl =
+            "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+          break;
+        case "ingredient":
+          drinkApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${drinkParams.ingredient}`;
+          break;
+        case "category":
+          drinkApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drinkParams.category}`;
+          break;
+        default:
+          break;
+      }
 
       const mealResponse = await axios.get(mealApiUrl);
       const drinkResponse = await axios.get(drinkApiUrl);
-      
 
       if (mealResponse.data.meals && mealResponse.data.meals.length > 0) {
         let randomMeal;
@@ -124,9 +145,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.sectionTitle}>Your Meal:</Text>
-      </View>
+        <View style={styles.titleContainer}>
+          <Text style={styles.sectionTitle}>Your Meal:</Text>
+        </View>
         <View style={styles.content}>
           <SelectMeal
             onSelect={handleMealSelect}
@@ -134,8 +155,8 @@ export default function App() {
           />
         </View>
         <View style={styles.titleContainer}>
-        <Text style={styles.sectionTitle}>Your Drink:</Text>
-      </View>
+          <Text style={styles.sectionTitle}>Your Drink:</Text>
+        </View>
         <View style={styles.content}>
           <SelectDrink
             onSelect={handleDrinkSelect}
@@ -173,11 +194,8 @@ const styles = StyleSheet.create({
     color: "#f9dbbd",
     fontWeight: "bold",
     fontSize: 16,
-    
   },
-  titleContainer: {
-    
-  },
+  titleContainer: {},
 });
 
 // darkest - 450920;
@@ -185,3 +203,6 @@ const styles = StyleSheet.create({
 // medium - da627d;
 // light - ffa5ab;
 // lightest - f9dbbd;
+
+// movie in viewdate
+// finish logic to fetch

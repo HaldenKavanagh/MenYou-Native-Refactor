@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 
-const ViewDate = ({ meal, drink }) => {
+const ViewDate = ({ meal, drink, movie }) => {
   if (!drink) {
     return null;
   }
@@ -10,6 +10,8 @@ const ViewDate = ({ meal, drink }) => {
       <Text style={styles.mealName}>Meal Name: {meal.strMeal}</Text>
       <Text style={styles.label}>Selected Drink:</Text>
       <Text style={styles.mealName}>Drink Name: {drink.strDrink}</Text>
+      <Text style={styles.label}>Selected Movie:</Text>
+      <Text style={styles.mealName}>Movie Name: {movie.strDrink}</Text>
     </View>
   );
 };
