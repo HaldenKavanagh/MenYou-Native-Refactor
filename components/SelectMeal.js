@@ -39,6 +39,7 @@ const SelectMeal = ({ onSelect, onParamsChange }) => {
           onValueChange={handleRegionChange}
           style={styles.picker}
         >
+          <Picker.Item label="Choose" value="/" />
           <Picker.Item label="American" value="American" />
           <Picker.Item label="British" value="British" />
           <Picker.Item label="Chinese" value="Chinese" />
@@ -61,6 +62,7 @@ const SelectMeal = ({ onSelect, onParamsChange }) => {
           onValueChange={handleCategoryChange}
           style={styles.picker}
         >
+          <Picker.Item label="Choose" value="/" />
           <Picker.Item label="Beef" value="Beef" />
           <Picker.Item label="Chicken" value="Chicken" />
           <Picker.Item label="Pork" value="Pork" />

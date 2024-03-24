@@ -44,6 +44,8 @@ export default function App() {
       let mealApiUrl = "";
       let drinkApiUrl = "";
 
+      console.log(mealParams);
+
       switch (mealParams.option) {
         case "random":
           mealApiUrl = "https://www.themealdb.com/api/json/v1/1/random.php";
@@ -57,6 +59,8 @@ export default function App() {
         default:
           break;
       }
+
+      console.log(drinkParams);
 
       switch (drinkParams.option) {
         case "random":
