@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView, Text } from "react-native";
 import React, { useState } from "react";
 import SelectMeal from "./components/SelectMeal";
 import SelectDrink from "./components/SelectDrink";
@@ -44,7 +44,7 @@ export default function App() {
       let mealApiUrl = "";
       let drinkApiUrl = "";
 
-      console.log(mealParams);
+      
 
       switch (mealParams.option) {
         case "random":
@@ -60,7 +60,7 @@ export default function App() {
           break;
       }
 
-      console.log(drinkParams);
+      
 
       switch (drinkParams.option) {
         case "random":
@@ -77,11 +77,11 @@ export default function App() {
           break;
       }
 
-      console.log("Drink API URL:", drinkApiUrl);
+      
 
       const mealResponse = await axios.get(mealApiUrl);
       const drinkResponse = await axios.get(drinkApiUrl);
-      console.log(drinkResponse);
+      
 
       if (mealResponse.data.meals && mealResponse.data.meals.length > 0) {
         let randomMeal;
@@ -124,13 +124,18 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.sectionTitle}>Your Meal:</Text>
+      </View>
         <View style={styles.content}>
           <SelectMeal
             onSelect={handleMealSelect}
             onParamsChange={handleMealParamsChange}
           />
         </View>
-
+        <View style={styles.titleContainer}>
+        <Text style={styles.sectionTitle}>Your Drink:</Text>
+      </View>
         <View style={styles.content}>
           <SelectDrink
             onSelect={handleDrinkSelect}
@@ -163,6 +168,15 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 30,
     marginBottom: 20,
+  },
+  sectionTitle: {
+    color: "#f9dbbd",
+    fontWeight: "bold",
+    fontSize: 16,
+    
+  },
+  titleContainer: {
+    
   },
 });
 
