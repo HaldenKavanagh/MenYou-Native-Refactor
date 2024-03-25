@@ -3,13 +3,17 @@ import { StyleSheet, View, ScrollView, Text } from "react-native";
 import React, { useState } from "react";
 import SelectMeal from "./components/SelectMeal";
 import SelectDrink from "./components/SelectDrink";
+import SelectMovie from "./components/SelectMovie";
 import Button from "./components/Button";
 import ViewDate from "./components/ViewDate";
 import axios from "axios";
 
+import { MOVIE_API_KEY } from "@env";
+
 export default function App() {
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [selectedDrink, setSelectedDrink] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   const [mealParams, setMealParams] = useState({
     option: "random",
@@ -89,18 +93,23 @@ export default function App() {
       switch (movieParams.option) {
         case "random":
           movieApiUrl =
-            "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+            "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2023&sort_by=popularity.desc";
           break;
-        case "ingredient":
-          drinkApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${drinkParams.ingredient}`;
-          break;
-        case "category":
-          drinkApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drinkParams.category}`;
+        case "genre":
+          movieApiUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2023&sort_by=popularity.desc&with_genres=${movieParams.genre}`;
           break;
         default:
           break;
       }
+      console.log(movieApiUrl);
 
+      const movieResponse = await axios.get(movieApiUrl, {
+        headers: {
+          Authorization: `Bearer ${MOVIE_API_KEY}`,
+        },
+      });
+
+      console.log(movieResponse);
       const mealResponse = await axios.get(mealApiUrl);
       const drinkResponse = await axios.get(drinkApiUrl);
 
@@ -137,6 +146,17 @@ export default function App() {
       } else {
         console.error("No drinks found in response data");
       }
+
+      if (movieResponse.data.results && movieResponse.data.results.length > 0) {
+        // Extract random movie data and set state
+        let randomMovie =
+          movieResponse.data.results[
+            Math.floor(Math.random() * movieResponse.data.results.length)
+          ];
+        setSelectedMovie(randomMovie);
+      } else {
+        console.error("No movies found in response data");
+      }
     } catch (error) {
       console.error("Error fetching date:", error);
     }
@@ -163,6 +183,15 @@ export default function App() {
             onParamsChange={handleDrinkParamsChange}
           />
         </View>
+        <View style={styles.titleContainer}>
+          <Text style={styles.sectionTitle}>Your Movie:</Text>
+        </View>
+        <View style={styles.content}>
+          <SelectMovie
+            onSelect={handleMovieSelect}
+            onParamsChange={handleMovieParamsChange}
+          />
+        </View>
       </ScrollView>
 
       <View style={styles.bottomContainer}>
@@ -170,7 +199,11 @@ export default function App() {
 
         {selectedMeal && (
           <View style={styles.content}>
-            <ViewDate meal={selectedMeal} drink={selectedDrink} />
+            <ViewDate
+              meal={selectedMeal}
+              drink={selectedDrink}
+              movie={selectedMovie}
+            />
           </View>
         )}
       </View>
@@ -205,4 +238,3 @@ const styles = StyleSheet.create({
 // lightest - f9dbbd;
 
 // movie in viewdate
-// finish logic to fetch

@@ -8,12 +8,12 @@ const SelectMovie = ({ onSelect, onParamsChange }) => {
 
   const handleOptionChange = (itemValue) => {
     setSelectedOption(itemValue);
-    onParamsChange(itemValue, selectedGenre, selectedCategory);
+    onParamsChange(itemValue, selectedGenre);
   };
 
   const handleGenreChange = (itemValue) => {
     setSelectedGenre(itemValue);
-    onParamsChange(selectedOption, itemValue, selectedCategory);
+    onParamsChange(selectedOption, itemValue);
   };
 
   return (
@@ -25,7 +25,6 @@ const SelectMovie = ({ onSelect, onParamsChange }) => {
       >
         <Picker.Item label="Generate Random" value="random" />
         <Picker.Item label="Select by Genre" value="genre" />
-        
       </Picker>
       {selectedOption === "genre" && (
         <Picker

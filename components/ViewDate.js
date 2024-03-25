@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
 
 const ViewDate = ({ meal, drink, movie }) => {
-  if (!drink) {
+  if (!drink || !meal || !movie) {
     return null;
   }
+
+  console.log(movie.original_title);
   return (
     <View style={styles.dateContainer}>
       <Text style={styles.label}>Selected Meal:</Text>
@@ -11,7 +13,7 @@ const ViewDate = ({ meal, drink, movie }) => {
       <Text style={styles.label}>Selected Drink:</Text>
       <Text style={styles.mealName}>Drink Name: {drink.strDrink}</Text>
       <Text style={styles.label}>Selected Movie:</Text>
-      <Text style={styles.mealName}>Movie Name: {movie.strDrink}</Text>
+      <Text style={styles.mealName}>Movie Name: {movie.original_title}</Text>
     </View>
   );
 };
