@@ -109,7 +109,6 @@ export default function App() {
         },
       });
 
-      console.log(movieResponse);
       const mealResponse = await axios.get(mealApiUrl);
       const drinkResponse = await axios.get(drinkApiUrl);
 
@@ -165,48 +164,50 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.sectionTitle}>Your Meal:</Text>
-        </View>
-        <View style={styles.content}>
-          <SelectMeal
-            onSelect={handleMealSelect}
-            onParamsChange={handleMealParamsChange}
-          />
-        </View>
-        <View style={styles.titleContainer}>
-          <Text style={styles.sectionTitle}>Your Drink:</Text>
-        </View>
-        <View style={styles.content}>
-          <SelectDrink
-            onSelect={handleDrinkSelect}
-            onParamsChange={handleDrinkParamsChange}
-          />
-        </View>
-        <View style={styles.titleContainer}>
-          <Text style={styles.sectionTitle}>Your Movie:</Text>
-        </View>
-        <View style={styles.content}>
-          <SelectMovie
-            onSelect={handleMovieSelect}
-            onParamsChange={handleMovieParamsChange}
-          />
-        </View>
-      </ScrollView>
-
-      <View style={styles.bottomContainer}>
-        <Button label="Generate Date" onPress={handleGenerateDate} />
-
-        {selectedMeal && (
+        <View style={styles.form}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.sectionTitle}>Your Meal:</Text>
+          </View>
           <View style={styles.content}>
-            <ViewDate
-              meal={selectedMeal}
-              drink={selectedDrink}
-              movie={selectedMovie}
+            <SelectMeal
+              onSelect={handleMealSelect}
+              onParamsChange={handleMealParamsChange}
             />
           </View>
-        )}
-      </View>
+          <View style={styles.titleContainer}>
+            <Text style={styles.sectionTitle}>Your Drink:</Text>
+          </View>
+          <View style={styles.content}>
+            <SelectDrink
+              onSelect={handleDrinkSelect}
+              onParamsChange={handleDrinkParamsChange}
+            />
+          </View>
+          <View style={styles.titleContainer}>
+            <Text style={styles.sectionTitle}>Your Movie:</Text>
+          </View>
+          <View style={styles.content}>
+            <SelectMovie
+              onSelect={handleMovieSelect}
+              onParamsChange={handleMovieParamsChange}
+            />
+          </View>
+        </View>
+
+        <View style={styles.bottomContainer}>
+          <Button label="Generate Date" onPress={handleGenerateDate} />
+
+          {selectedMeal && (
+            <View style={styles.content}>
+              <ViewDate
+                meal={selectedMeal}
+                drink={selectedDrink}
+                movie={selectedMovie}
+              />
+            </View>
+          )}
+        </View>
+      </ScrollView>
 
       <StatusBar style="auto" />
     </View>
@@ -228,13 +229,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
+  scroll: {
+    paddingRight: 30,
+  },
   titleContainer: {},
 });
-
-// darkest - 450920;
-// dark - a53860;
-// medium - da627d;
-// light - ffa5ab;
-// lightest - f9dbbd;
-
-// movie in viewdate
