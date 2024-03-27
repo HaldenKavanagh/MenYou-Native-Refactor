@@ -218,10 +218,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#450920",
-    padding: 20,
+    paddingBottom: 30,
+    paddingTop: 30,
+    alignItems: "center",
+    justifyContent: "center",
   },
   content: {
-    marginTop: 30,
+    // marginTop: 30,
     marginBottom: 20,
   },
   sectionTitle: {
@@ -230,7 +233,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   scroll: {
-    paddingRight: 30,
+    padding: 30,
   },
   titleContainer: {},
+  bottomContainer: {
+    flexGrow: 1, // Allow the container to grow to accommodate its content
+    marginBottom: 30, // Add some top margin for separation
+  },
 });
