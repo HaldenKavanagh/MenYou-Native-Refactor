@@ -8,8 +8,6 @@ import Button from "./components/Button";
 import ViewDate from "./components/ViewDate";
 import axios from "axios";
 
-import { MOVIE_API_KEY } from "@env";
-
 export default function App() {
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [selectedDrink, setSelectedDrink] = useState(null);
@@ -105,7 +103,7 @@ export default function App() {
 
       const movieResponse = await axios.get(movieApiUrl, {
         headers: {
-          Authorization: `Bearer ${MOVIE_API_KEY}`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYWZhY2EzZTE4ZWExYzg1ZTg2YjMxMDNiYWNiMzcyMyIsInN1YiI6IjY1Nzc1NWZiZWM4YTQzMDBlMDlhMGY1ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8v5Z0VqlnnmVGtURD871qN8SwL9ZHnQg7s8YPibUrfs`,
         },
       });
 
