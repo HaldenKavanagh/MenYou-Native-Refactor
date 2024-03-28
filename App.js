@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, ScrollView, Text } from "react-native";
 import React, { useState } from "react";
-import SelectMeal from "./components/SelectMeal";
-import SelectDrink from "./components/SelectDrink";
-import SelectMovie from "./components/SelectMovie";
-import Button from "./components/Button";
-import ViewDate from "./components/ViewDate";
+import SelectMeal from "./components/SelectMeal.js";
+import SelectDrink from "./components/SelectDrink.js";
+import SelectMovie from "./components/SelectMovie.js";
+import Button from "./components/Button.js";
+import ViewDate from "./components/ViewDate.js";
 import axios from "axios";
 
 export default function App() {
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {},
   bottomContainer: {
-    flexGrow: 1, // Allow the container to grow to accommodate its content
-    marginBottom: 30, // Add some top margin for separation
+    flexGrow: 1, 
+    marginBottom: 30, 
   },
 });
