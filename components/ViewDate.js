@@ -9,32 +9,33 @@ const ViewDate = ({ meal, drink, movie }) => {
   return (
     <View style={styles.dateContainer}>
       <Text style={styles.label}>Selected Meal:</Text>
-      <Text style={styles.mealName}>Meal Name: {meal.strMeal}</Text>
+      <Text style={styles.info}>{meal.strMeal}</Text>
       <Image
         source={{ uri: meal.strMealThumb }}
         style={styles.image}
         resizeMode="cover"
       />
       <Text style={styles.label}>Selected Drink:</Text>
-      <Text style={styles.mealName}>Drink Name: {drink.strDrink}</Text>
+      <Text style={styles.info}>{drink.strDrink}</Text>
       <Image
         source={{ uri: drink.strDrinkThumb }}
         style={styles.image}
         resizeMode="cover"
       />
       <Text style={styles.label}>Selected Movie:</Text>
-      <Text style={styles.mealName}>Movie Name: {movie.original_title}</Text>
-      <Text style={styles.mealName}>Description: {movie.overview}</Text>
-      <Text style={styles.mealName}>Release: {movie.release_date}</Text>
+      <Text style={styles.info}>{movie.original_title}</Text>
+      <Text style={styles.info}>{movie.overview}</Text>
+      <Text style={styles.info}>Release: {movie.release_date}</Text>
       {movie.poster_path ? (
         <Image
           source={{
             uri: `https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`,
           }}
           style={styles.poster}
+          resizeMode="cover"
         />
       ) : (
-        <Text style={styles.mealName}>No Poster Available</Text>
+        <Text style={styles.info}>No Poster Available</Text>
       )}
     </View>
   );
@@ -43,28 +44,30 @@ const ViewDate = ({ meal, drink, movie }) => {
 const styles = StyleSheet.create({
   dateContainer: {
     backgroundColor: "#f9dbbd",
-    padding: 10,
-    borderRadius: 8,
-    marginBottom: 10,
+    padding: 20,
+    borderRadius: 10,
+    marginBottom: 20,
   },
   label: {
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 5,
   },
-  mealName: {
+  info: {
     fontSize: 16,
-    marginBottom: 5,
+    marginBottom: 10,
   },
   image: {
     width: "100%",
     height: 200,
-    marginBottom: 5,
+    marginBottom: 10,
+    borderRadius: 8,
   },
   poster: {
-    width: "100%", // Adjust dimensions as needed
-    height: 300, // Adjust dimensions as needed
+    width: "100%",
+    height: 300,
     marginTop: 10,
+    borderRadius: 8,
   },
 });
 

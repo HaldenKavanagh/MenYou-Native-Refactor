@@ -216,26 +216,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#450920",
-    paddingBottom: 30,
-    paddingTop: 30,
-    alignItems: "center",
-    justifyContent: "center",
+    paddingHorizontal: 30,
+    paddingTop: 50, // Adjust the top padding to give space for StatusBar
   },
-  content: {
-    // marginTop: 30,
-    marginBottom: 20,
+  form: {
+    marginBottom: 30,
   },
   sectionTitle: {
     color: "#f9dbbd",
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 18, // Increased font size for better readability
+    marginBottom: 10, // Added space below section titles
+  },
+  content: {
+    marginBottom: 20,
   },
   scroll: {
-    padding: 30,
+    flexGrow: 1,
   },
-  titleContainer: {},
   bottomContainer: {
-    flexGrow: 1, 
-    marginBottom: 30, 
+    marginBottom: 30,
+    alignItems: "center", // Align button and ViewDate component to the center horizontally
+  },
+  button: {
+    backgroundColor: "#f9dbbd",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: "#450920",
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
