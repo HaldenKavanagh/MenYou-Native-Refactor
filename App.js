@@ -207,7 +207,7 @@ export default function App() {
         </View>
       </ScrollView>
 
-      <StatusBar style="auto" />
+      <StatusBar style="light" backgroundColor="#f9dbbd" />
     </View>
   );
 }
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#450920",
     paddingHorizontal: 30,
-    paddingTop: 50, // Adjust the top padding to give space for StatusBar
+    paddingTop: 60,
   },
   form: {
     marginBottom: 30,
@@ -225,8 +225,8 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: "#f9dbbd",
     fontWeight: "bold",
-    fontSize: 18, // Increased font size for better readability
-    marginBottom: 10, // Added space below section titles
+    fontSize: 18,
+    marginBottom: 10,
   },
   content: {
     marginBottom: 20,
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     marginBottom: 30,
-    alignItems: "center", // Align button and ViewDate component to the center horizontally
+    alignItems: "center",
   },
   button: {
     backgroundColor: "#f9dbbd",

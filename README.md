@@ -1,0 +1,5 @@
+lightest "#f9dbbd"
+light "#ffa5ab"
+medium "#da627d"
+dark "#a53860"
+darkest "#450920"
