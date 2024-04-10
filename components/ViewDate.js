@@ -6,6 +6,8 @@ const ViewDate = ({ meal, drink, movie }) => {
     return null;
   }
 
+  console.log("Drink:", drink);
+
   const [showMealDetails, setShowMealDetails] = useState(false);
   const [showDrinkDetails, setShowDrinkDetails] = useState(false);
   const [showMovieDetails, setShowMovieDetails] = useState(false);
@@ -18,10 +20,19 @@ const ViewDate = ({ meal, drink, movie }) => {
     const ingredients = [];
 
     for (let i = 1; i <= 20; i++) {
-      if (recipe[`strIngredient${i}`]) {
+      const ingredient = recipe[`strIngredient${i}`];
+      const measure = recipe[`strMeasure${i}`];
+
+      if (ingredient && measure) {
         ingredients.push(
           <Text key={i} style={styles.info}>
-            {recipe[`strIngredient${i}`]}: {recipe[`strMeasure${i}`]}
+            {ingredient}: {measure}
+          </Text>
+        );
+      } else if (ingredient) {
+        ingredients.push(
+          <Text key={i} style={styles.info}>
+            {ingredient}
           </Text>
         );
       } else {
@@ -34,8 +45,13 @@ const ViewDate = ({ meal, drink, movie }) => {
 
   return (
     <View style={styles.dateContainer}>
-      <Text style={styles.label}>Selected Meal:</Text>
-      <Text style={styles.info}>{meal.strMeal}</Text>
+      <Text style={styles.label}>Meal:</Text>
+      <Text style={styles.title}>{meal.strMeal}</Text>
+      <Image
+        source={{ uri: meal.strMealThumb }}
+        style={styles.image}
+        resizeMode="cover"
+      />
       <TouchableOpacity onPress={toggleMealDetails}>
         <Text style={styles.buttonText}>View Ingredients & Recipe</Text>
         {showMealDetails && (
@@ -47,13 +63,13 @@ const ViewDate = ({ meal, drink, movie }) => {
           </>
         )}
       </TouchableOpacity>
+      <Text style={styles.label}>Drink:</Text>
+      <Text style={styles.title}>{drink.strDrink}</Text>
       <Image
-        source={{ uri: meal.strMealThumb }}
+        source={{ uri: drink.strDrinkThumb }}
         style={styles.image}
         resizeMode="cover"
       />
-      <Text style={styles.label}>Selected Drink:</Text>
-      <Text style={styles.info}>{drink.strDrink}</Text>
       <TouchableOpacity onPress={toggleDrinkDetails}>
         <Text style={styles.buttonText}>View Ingredients & Recipe</Text>
         {showDrinkDetails && (
@@ -65,25 +81,8 @@ const ViewDate = ({ meal, drink, movie }) => {
           </>
         )}
       </TouchableOpacity>
-      <Image
-        source={{ uri: drink.strDrinkThumb }}
-        style={styles.image}
-        resizeMode="cover"
-      />
-      <Text style={styles.label}>Selected Movie:</Text>
-      <Text style={styles.info}>{movie.original_title}</Text>
-      <TouchableOpacity onPress={toggleMovieDetails}>
-        <Text style={styles.buttonText}>Show Details</Text>
-
-        {showMovieDetails && (
-          <>
-            <Text style={styles.subLabel}>Overview:</Text>
-            <Text style={styles.info}>{movie.overview}</Text>
-            <Text style={styles.subLabel}>Release Date:</Text>
-            <Text style={styles.info}>{movie.release_date}</Text>
-          </>
-        )}
-      </TouchableOpacity>
+      <Text style={styles.label}>Movie:</Text>
+      <Text style={styles.title}>{movie.original_title}</Text>
       {movie.poster_path ? (
         <Image
           source={{
@@ -95,6 +94,18 @@ const ViewDate = ({ meal, drink, movie }) => {
       ) : (
         <Text style={styles.info}>No Poster Available</Text>
       )}
+          <TouchableOpacity onPress={toggleMovieDetails}>
+            <Text style={styles.buttonText}>Show Details</Text>
+    
+            {showMovieDetails && (
+              <>
+                <Text style={styles.subLabel}>Overview:</Text>
+                <Text style={styles.info}>{movie.overview}</Text>
+                <Text style={styles.subLabel}>Release Date:</Text>
+                <Text style={styles.info}>{movie.release_date}</Text>
+              </>
+            )}
+          </TouchableOpacity>
     </View>
   );
 };
@@ -112,7 +123,12 @@ const styles = StyleSheet.create({
     color: "#450920",
     fontWeight: "bold",
     fontSize: 18,
+    color: "#a53860",
     marginBottom: 5,
+  },
+  title: {
+    color: "#450920",
+    fontSize: 25,
   },
   info: {
     fontSize: 16,
