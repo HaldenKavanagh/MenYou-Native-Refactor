@@ -6,8 +6,6 @@ const ViewDate = ({ meal, drink, movie }) => {
     return null;
   }
 
-  console.log("Drink:", drink);
-
   const [showMealDetails, setShowMealDetails] = useState(false);
   const [showDrinkDetails, setShowDrinkDetails] = useState(false);
   const [showMovieDetails, setShowMovieDetails] = useState(false);
@@ -94,18 +92,18 @@ const ViewDate = ({ meal, drink, movie }) => {
       ) : (
         <Text style={styles.info}>No Poster Available</Text>
       )}
-          <TouchableOpacity onPress={toggleMovieDetails}>
-            <Text style={styles.buttonText}>Show Details</Text>
-    
-            {showMovieDetails && (
-              <>
-                <Text style={styles.subLabel}>Overview:</Text>
-                <Text style={styles.info}>{movie.overview}</Text>
-                <Text style={styles.subLabel}>Release Date:</Text>
-                <Text style={styles.info}>{movie.release_date}</Text>
-              </>
-            )}
-          </TouchableOpacity>
+      <TouchableOpacity onPress={toggleMovieDetails}>
+        <Text style={styles.buttonText}>Show Details</Text>
+
+        {showMovieDetails && (
+          <>
+            <Text style={styles.subLabel}>Overview:</Text>
+            <Text style={styles.info}>{movie.overview}</Text>
+            <Text style={styles.subLabel}>Release Date:</Text>
+            <Text style={styles.info}>{movie.release_date}</Text>
+          </>
+        )}
+      </TouchableOpacity>
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, ScrollView, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Text, Image } from "react-native";
 import React, { useState } from "react";
 import SelectMeal from "./components/SelectMeal.js";
 import SelectDrink from "./components/SelectDrink.js";
@@ -99,7 +99,9 @@ export default function App() {
         default:
           break;
       }
-      console.log(movieApiUrl);
+      console.log("Drink", drinkApiUrl);
+      console.log("Meal", mealApiUrl);
+      console.log("Movie", movieApiUrl);
 
       const movieResponse = await axios.get(movieApiUrl, {
         headers: {
@@ -161,6 +163,14 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.banner}>
+        <Image
+          source={require("./assets/logo.png")}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+        <Text style={styles.bannerText}>MenYou</Text>
+      </View>
       <ScrollView style={styles.scroll}>
         <View style={styles.form}>
           <View style={styles.titleContainer}>
@@ -248,5 +258,23 @@ const styles = StyleSheet.create({
     color: "#450920",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  banner: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    backgroundColor: "#f9dbbd",
+    borderRadius: 8,
+  },
+  logo: {
+    width: 50,
+    height: 50,
+  },
+  bannerText: {
+    color: "#450920",
+    fontWeight: "bold",
+    fontSize: 24,
+    marginLeft: 10,
   },
 });
